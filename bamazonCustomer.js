@@ -14,9 +14,8 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
-    showAllProducts()
-    postAuction()
-    connection.end()
+    showAllProducts();
+    
       
   });
 
@@ -32,40 +31,86 @@ function showAllProducts() {
         }
         console.log("-----------------------------------");
         
+        askWhatProduct(res);
 
       });
 }
 
 
 //-------------------------------------------------------------
-function postAuction() {
-    // prompt for info about the item being put up for auction
-    inquirer
-      .prompt([
-        {
-          name: "product_buying",
-          type: "input",
-          message: "What is the ID of the product you want to buy?"
-        },
-        {
-          name: "quantity_desired",
-          type: "input",
-          message: "How many units of products would you like?"
-        },
-        
-      ]).then(function(answer){
-          var chosenItem;
-          for (var i=0; i < SpeechRecognitionResultList.length; i++) {
-            if (results[i].item_id === answer.product_buying){
-              chosenItem = results[i];
-            }
-          }
-          if (quantity_desired > parseInt(answer.stock_quantity)) {
-            console.log( "This item is low in stock.")
-          
-          }
+// function postAuction() {
 
-      })
+//     connectiong.query( "SELECT * FROM products", function(err, results){
 
-      
+//       if (err) {console.log("error at INQUIRER")};
+function askWhatProduct(results) {
+  inquirer
+  .prompt([
+    {
+      name: "productID",
+      type: "rawlist",
+      choices: function() {
+          var choiceArray = [];
+          for (var i=0; i< results.length; i++) {
+              choiceArray.push(results[i].item_id);
+          }
+          return choiceArray;
+          },
+      message: "Pick the id of the product that you'd like to buy."    
+  
+    },
+    {
+      name: "quantity",
+      type: "input",
+      message: "How many units of products would you like?"
     }
+  ]).then(function(answer){
+    console.log(answer)
+      
+    checkStock(answer.productID, answer.quantity)
+    // var chosenItem;
+    //   for (var i=0; i < answer.length; i++) {
+    //     if (results[i].item_id === answer.product_buying){
+    //       chosenItem = results[i];
+    //     }
+    //   }
+    //   if (answer.quantity_desired > parseInt(results.stock_quantity)) {
+    //     console.log( "This item is low in stock.")
+      
+    //   }
+      
+  
+  })
+  
+
+}
+
+
+function checkStock(id, quantity){
+
+  connection.query( "SELECT * FROM products WHERE item_id=?", [id], function(err, results){
+
+    if (err) {console.log("error finding products")};
+
+    // console.log(results)
+    // console.log(results[0].stock_quantity)
+
+    var availItemNum = results[0].stock_quantity;
+    var userQuanDesired = quantity;
+
+    
+
+    if(availItemNum > quantity){
+
+    console.log("We have enough products.")
+    console.log( "Your cost is $" + results[0].price * quantity)
+    }else
+    {
+      console.log("Sorry, low inventory. Cannot process your order.")
+    }
+
+
+})
+
+}
+
