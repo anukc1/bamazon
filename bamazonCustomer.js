@@ -29,7 +29,7 @@ function showAllProducts() {
         for (var i = 0; i < res.length; i++) {
           console.log(res[i].item_id + " | " + res[i].product_name +" | " + res[i].price);
         }
-        console.log("-----------------------------------");
+        console.log("------------------------------------------------------------------------");
         
         askWhatProduct(res);
 
@@ -113,10 +113,6 @@ function checkStock(id, quantity){
 
 //---------------------------------------------------------------
 
-
-
-
-//_________________________________________
 function shopMore(){
 
 inquirer.prompt([
@@ -133,7 +129,7 @@ if(confirmP){
   showAllProducts()
 
 }else{
-
+  console.log("Thank you for shopping with us!")
   connection.end();
 }
 })
