@@ -38,11 +38,7 @@ function showAllProducts() {
 
 
 //-------------------------------------------------------------
-// function postAuction() {
 
-//     connectiong.query( "SELECT * FROM products", function(err, results){
-
-//       if (err) {console.log("error at INQUIRER")};
 function askWhatProduct(results) {
   inquirer
   .prompt([
@@ -68,21 +64,8 @@ function askWhatProduct(results) {
     console.log(answer)
       
     checkStock(answer.productID, answer.quantity)
-    // var chosenItem;
-    //   for (var i=0; i < answer.length; i++) {
-    //     if (results[i].item_id === answer.product_buying){
-    //       chosenItem = results[i];
-    //     }
-    //   }
-    //   if (answer.quantity_desired > parseInt(results.stock_quantity)) {
-    //     console.log( "This item is low in stock.")
-      
-    //   }
-      
-  
+    
   })
-  
-
 }
 
 
@@ -98,19 +81,61 @@ function checkStock(id, quantity){
     var availItemNum = results[0].stock_quantity;
     var userQuanDesired = quantity;
 
-    
-
     if(availItemNum > quantity){
 
-    console.log("We have enough products.")
+      var newStockNum = availItemNum - userQuanDesired;
+
+
+      connection.query(
+          "UPDATE products SET ? WHERE ?",
+          [
+            {
+              stock_quantity : newStockNum
+            },
+            {
+              item_id : id
+            }
+          ],
+          
+      )
     console.log( "Your cost is $" + results[0].price * quantity)
+
+      shopMore()
+
     }else
     {
       console.log("Sorry, low inventory. Cannot process your order.")
     }
 
-
 })
 
+}
+
+//---------------------------------------------------------------
+
+
+
+
+//_________________________________________
+function shopMore(){
+
+inquirer.prompt([
+  {
+    type: 'confirm',
+    name: 'confirmPromp',
+    message: 'Would you like to buy more?'
+
+}
+]).then(function(answer){
+var confirmP = answer.confirmPromp;
+if(confirmP){
+
+  showAllProducts()
+
+}else{
+
+  connection.end();
+}
+})
 }
 
