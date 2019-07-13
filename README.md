@@ -10,6 +10,12 @@
 
 #   Links of Screenshoots that shows bamazon running from the user side. 
 
-  !![alt text](http://url/to/img.png)
+
+![No More shopping Image](https://github.com/anukc1/bamazon/blob/master/Images/NoMoreShop.png)
+
+![Item Is Available and continue shopping image](https://github.com/anukc1/bamazon/blob/master/Images/ItemAvail_ContiShopp.png)
+
+![Low inventory ](https://github.com/anukc1/bamazon/blob/master/Images/lowInventory.png)
+
 
 
