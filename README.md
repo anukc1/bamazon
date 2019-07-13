@@ -13,7 +13,7 @@
 
 ![No More shopping Image](https://github.com/anukc1/bamazon/blob/master/Images/NoMoreShop.png)
 
-![Item Is Available and continue shopping image](https://github.com/anukc1/bamazon/blob/master/Images/ItemAvail_ContiShopp.png)
+![Item Is Available and continue shopping image](https://github.com/anukc1/bamazon/blob/master/Images/ItemAvail:ContiShopp.png)
 
 ![Low inventory](https://github.com/anukc1/bamazon/blob/master/Images/lowInventory.png)
 
