@@ -17,5 +17,10 @@
 
 ![Low inventory ](https://github.com/anukc1/bamazon/blob/master/Images/lowInventory.png)
 
+![Low inventory ](https://github.com/anukc1/bamazon/blob/master/Images/ItemAvail_ContiShopp.png)
+
+![Low inventory ](https://github.com/anukc1/bamazon/blob/master/Images/ItemAvail_ContiShopp.png)
+
+
 
 
