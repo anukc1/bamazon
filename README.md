@@ -11,7 +11,7 @@
 #   Links of Screenshoots that shows bamazon running from the user side. 
 
 
-![No More shopping Image](https://github.com/anukc1/bamazon/blob/master/Images/NoMoreShop.png)
+![No More shopping Image](https://github.com/anukc1/bamazon/blob/master/Images/dont continue shopping.png)
 
 ![Item Is Available and continue shopping image](https://github.com/anukc1/bamazon/blob/master/Images/ItemAvail:ContiShopp.png)
 
